@@ -1,0 +1,11 @@
+check,count,interpretation
+Duplicate Id values,0,Id should normally identify one row; investigate before removing anything.
+Exact duplicate rows,0,Rows identical across every column.
+"Repeated review key (ProductId, UserId, Time, Text)",1205,Potential repeat submissions; not automatically removed.
+Scores outside 1–5,0,Ratings should be within the documented 1–5 scale.
+Helpfulness numerator > denominator,2,Logically inconsistent helpfulness counts; verify source.
+Negative helpfulness counts,0,Counts should not be negative.
+Zero helpfulness denominator,270052,"Usually means no votes were recorded; ratio is undefined, not zero."
+Blank ProfileName strings,0,Different from missing/NA values.
+Blank Summary strings,0,Different from missing/NA values.
+Blank Text strings,0,Review text may be required for text analysis.

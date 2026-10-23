@@ -1,0 +1,4 @@
+hypothesis,test,n,statistic,p_value,effect_size,estimate,interpretation
+H1: Mean numeric score equals 3.0,One-sample t-test (rating treated approximately numeric),568454,680.7529025690661,0.0,0.9029045433041099,4.183198640523243,Compare p-value with 0.05; also assess effect size and ordinal-scale limitation.
+H2: Score distributions are equal for reviews with votes vs no votes,Two-sided Mann–Whitney U test,568454,34928918920.0,0.0,0.13310597004042835,0.0,Estimate is median(score with votes) minus median(score without votes); association is not causation.
+H3: Review text length distributions are equal for 1-star vs 5-star reviews,Two-sided Mann–Whitney U test on sampled rows,73264,327600683.0,5.106230528958566e-78,,58.0,Estimate is median characters (1-star minus 5-star); sample is random_state=42 if dataset is sampled.

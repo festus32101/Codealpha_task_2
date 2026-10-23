@@ -1,0 +1,56 @@
+AMAZON FINE FOOD REVIEWS — EXPLORATORY ANALYSIS
+==========================================================
+Source file: C:\Users\Iguoba Victor\Downloads\Tasks\Reviews.csv
+Rows: 568,454
+Columns: 10
+
+1. DATA STRUCTURE
+                       data_type  non_null_count  missing_count  missing_percent  unique_values
+Id                         int64          568454              0           0.0000         568454
+ProductId                    str          568454              0           0.0000          74258
+UserId                       str          568454              0           0.0000         256059
+ProfileName                  str          568428             26           0.0046         218415
+HelpfulnessNumerator       int64          568454              0           0.0000            231
+HelpfulnessDenominator     int64          568454              0           0.0000            234
+Score                      int64          568454              0           0.0000              5
+Time                       int64          568454              0           0.0000           3168
+Summary                      str          568427             27           0.0047         295742
+Text                         str          568454              0           0.0000         393579
+
+2. DATA QUALITY FLAGS (flags are not automatic corrections)
+                                              check  count                                                             interpretation
+                                Duplicate Id values      0 Id should normally identify one row; investigate before removing anything.
+                               Exact duplicate rows      0                                        Rows identical across every column.
+Repeated review key (ProductId, UserId, Time, Text)   1205                   Potential repeat submissions; not automatically removed.
+                                 Scores outside 1–5      0                         Ratings should be within the documented 1–5 scale.
+                Helpfulness numerator > denominator      2                  Logically inconsistent helpfulness counts; verify source.
+                        Negative helpfulness counts      0                                             Counts should not be negative.
+                       Zero helpfulness denominator 270052        Usually means no votes were recorded; ratio is undefined, not zero.
+                          Blank ProfileName strings      0                                          Different from missing/NA values.
+                              Blank Summary strings      0                                          Different from missing/NA values.
+                                 Blank Text strings      0                             Review text may be required for text analysis.
+
+3. DESCRIPTIVE FINDINGS
+Mean score: 4.1832
+Median score: 5.00
+5-star share: 63.88%
+Unique products: 74,258
+Unique users: 256,059
+First review timestamp (UTC): 1999-10-08 00:00:00+00:00
+Last review timestamp (UTC): 2012-10-26 00:00:00+00:00
+Median review text length in analysis sample: 301 characters
+
+4. HYPOTHESIS TESTS
+                                                                 hypothesis                                                     test      n    statistic      p_value  effect_size  estimate                                                                                        interpretation
+                                          H1: Mean numeric score equals 3.0 One-sample t-test (rating treated approximately numeric) 568454 6.807529e+02 0.000000e+00     0.902905  4.183199                      Compare p-value with 0.05; also assess effect size and ordinal-scale limitation.
+       H2: Score distributions are equal for reviews with votes vs no votes                            Two-sided Mann–Whitney U test 568454 3.492892e+10 0.000000e+00     0.133106  0.000000 Estimate is median(score with votes) minus median(score without votes); association is not causation.
+H3: Review text length distributions are equal for 1-star vs 5-star reviews            Two-sided Mann–Whitney U test on sampled rows  73264 3.276007e+08 5.106231e-78          NaN 58.000000 Estimate is median characters (1-star minus 5-star); sample is random_state=42 if dataset is sampled.
+
+5. INTERPRETATION AND LIMITATIONS
+- A very small p-value is not necessarily a practically important effect, especially with a large dataset.
+- The 1–5 score is ordinal; a t-test on the mean treats rating steps as approximately equally spaced.
+- Statistical significance does not establish causation.
+- Review volume reflects this dataset's collection process and should not automatically be treated as all Amazon reviews.
+- Timestamps are converted to UTC; local dates may differ.
+- Repeated review keys and unusual values are flagged for investigation rather than automatically deleted.
+- Text length does not measure sentiment; sentiment analysis would be a separate analysis.

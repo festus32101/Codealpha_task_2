@@ -1,0 +1,11 @@
+Variable,data_type,non_null_count,missing_count,missing_percent,unique_values
+Id,int64,568454,0,0.0,568454
+ProductId,str,568454,0,0.0,74258
+UserId,str,568454,0,0.0,256059
+ProfileName,str,568428,26,0.0046,218415
+HelpfulnessNumerator,int64,568454,0,0.0,231
+HelpfulnessDenominator,int64,568454,0,0.0,234
+Score,int64,568454,0,0.0,5
+Time,int64,568454,0,0.0,3168
+Summary,str,568427,27,0.0047,295742
+Text,str,568454,0,0.0,393579
